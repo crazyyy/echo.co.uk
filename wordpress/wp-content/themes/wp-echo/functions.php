@@ -108,7 +108,29 @@ function wpeHeadNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="headnav">%3$s</ul>',
+    'items_wrap'      => '<ul class="cx-header__links">%3$s</ul>',
+    'depth'           => 0,
+    'walker'          => ''
+    )
+  );
+}
+function wpeHeadNavM() {
+  wp_nav_menu(
+  array(
+    'theme_location'  => 'header-menu-m',
+    'menu'            => '',
+    'container'       => 'div',
+    'container_class' => 'menu-{menu slug}-container',
+    'container_id'    => '',
+    'menu_class'      => 'menu',
+    'menu_id'         => '',
+    'echo'            => true,
+    'fallback_cb'     => 'wp_page_menu',
+    'before'          => '',
+    'after'           => '',
+    'link_before'     => '',
+    'link_after'      => '',
+    'items_wrap'      => '<ul class="cx-header__mobile-menu__primary-links">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -131,7 +153,30 @@ function wpeFootNav() {
     'after'           => '',
     'link_before'     => '',
     'link_after'      => '',
-    'items_wrap'      => '<ul class="footernav">%3$s</ul>',
+    'items_wrap'      => '<ul class="cx-footer__links__navigation">%3$s</ul>',
+    'depth'           => 0,
+    'walker'          => ''
+    )
+  );
+}
+// WPE footer navigation
+function wpeFootNavM() {
+  wp_nav_menu(
+  array(
+    'theme_location'  => 'footer-menu-m',
+    'menu'            => '',
+    'container'       => 'div',
+    'container_class' => 'menu-{menu slug}-container',
+    'container_id'    => '',
+    'menu_class'      => 'menu',
+    'menu_id'         => '',
+    'echo'            => true,
+    'fallback_cb'     => 'wp_page_menu',
+    'before'          => '',
+    'after'           => '',
+    'link_before'     => '',
+    'link_after'      => '',
+    'items_wrap'      => '<ul class="cx-header__mobile-menu__secondary-links">%3$s</ul>',
     'depth'           => 0,
     'walker'          => ''
     )
@@ -164,9 +209,11 @@ function wpeSideNav() {
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 function register_html5_menu() {
   register_nav_menus(array(
-    'header-menu' => __('Меню в шапке', 'wpeasy'),
-    'sidebar-menu' => __('Меню в сайдбар', 'wpeasy'),
-    'footer-menu' => __('Меню в подвал', 'wpeasy')
+    'header-menu' => __('Header Nav', 'wpeasy'),
+    'header-menu-m' => __('Header Nav Mobile', 'wpeasy'),
+    'sidebar-menu' => __('Header Sub Nav', 'wpeasy'),
+    'footer-menu' => __('Footer Nav', 'wpeasy'),
+    'footer-menu-m' => __('Footer Nav Mobile', 'wpeasy')
   ));
 }
 //  If Dynamic Sidebar Existsов
@@ -219,7 +266,7 @@ function wpeExcerpt($length_callback = '', $more_callback = '') {
   $output = get_the_excerpt();
   $output = apply_filters('wptexturize', $output);
   $output = apply_filters('convert_chars', $output);
-  $output = '<p>' . $output . '</p>';
+  // $output = '<p>' . $output . '</p>';
   echo $output;
 }
 

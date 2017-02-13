@@ -1,37 +1,36 @@
 <?php get_header(); ?>
+
+  <main class="main vx-article">
+
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-      <h1 class="single-title inner-title"><?php the_title(); ?></h1>
-      <?php if ( has_post_thumbnail()) :?>
-        <a class="single-thumb" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-          <?php the_post_thumbnail(); // Fullsize image for the single post ?>
-        </a>
-      <?php endif; ?><!-- /post thumbnail -->
+    <ul class="cx-categories">
+      <?php wp_list_categories( array(
+      'orderby' => 'name',
+      'use_desc_for_title' => false,
+      'depth' => 1,
+      ) ); ?>
+    </ul>
 
-      <span class="date"><?php the_time('d F Y'); ?> <?php the_time('H:i'); ?></span>
-      <span class="author"><?php _e( 'Published by', 'wpeasy' ); ?> <?php the_author_posts_link(); ?></span>
-      <span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'wpeasy' ), __( '1 Comment', 'wpeasy' ), __( '% Comments', 'wpeasy' )); ?></span><!-- /post details -->
+    <div class="cx-banner">
+      <div class="cx-banner__background" style="background-image: url(https://storage.googleapis.com/echo-site.appspot.com/images/blog/_900xAUTO_crop_center-center_60/Shutterstock-Original-3_cropped.jpg);"></div>
+      <div class="cx-banner__inner anim-block-list in">
+        <p class="type-heading"><?php the_category(', '); ?></p>
+        <h1 class="type-headline light"><?php the_title(); ?></h1>
+        <p class="type-body-s light"><published><?php the_time('d F Y'); ?></published> by <?php the_author(); ?></p>
+      </div>
+    </div>
 
+    <div class="ui-body">
       <?php the_content(); ?>
+    </div>
 
-      <?php the_tags( __( 'Tags: ', 'wpeasy' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
-
-      <p><?php _e( 'Categorised in: ', 'wpeasy' ); the_category(', '); // Separated by commas ?></p>
-
-      <p><?php _e( 'This post was written by ', 'wpeasy' ); the_author(); ?></p>
-
-      <?php edit_post_link(); ?>
-
-      <?php comments_template(); ?>
-
-    </article>
   <?php endwhile; else: ?>
-    <article>
 
+    <div class="ui-body">
       <h2 class="page-title inner-title"><?php _e( 'Sorry, nothing to display.', 'wpeasy' ); ?></h2>
+    </div>
 
-    </article>
   <?php endif; ?>
-<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>
