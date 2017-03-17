@@ -5154,12 +5154,28 @@ body.overlay-open {
   color: #033b4a;
 }.cx-header__links li a.active {
   color: rgba(3,59,74,.4);
-}.cx-header__get {
+}
+.cx-header__get {
   display: none;
   float: right;
 
   padding: 0 45px;
-}.cx-header__burger {
+}
+
+.cx-header__lang:hover {
+  background-color: #033b4a;
+}
+.cx-header__lang {
+  display: none;
+  float: right;
+
+  margin-right: 15px;
+  padding: 0 45px;
+
+  color: #033b4a;
+  border-color: #033b4a;
+}
+.cx-header__burger {
   position: absolute;
   top: 21px;
   right: 7px;
@@ -5256,9 +5272,14 @@ body.overlay-open {
     margin: 0 10px 0 0;
   }.cx-header__links li a {
     padding: 0 10px;
-  }.cx-header__get {
+  }
+  .cx-header__get {
     display: block;
-  }.cx-header__burger,
+  }
+  .cx-header__lang {
+    display: block;
+  }
+  .cx-header__burger,
   .cx-header__mobile-menu {
     display: none;
   }
